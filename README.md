@@ -1,31 +1,29 @@
-# xui_users_combine
+# ترکیب کاربران XUI
 
-**xui_users_combine** is a tool that combines multiple users using the same port on multiple XUI panels into a single panel entry. This simplifies user management and avoids clutter when using shared ports.
+**xui_users_combine** ابزاری است برای ترکیب چند کاربر که از یک پورت استفاده می‌کنند در پنل‌های مختلف XUI و نمایش آن‌ها به صورت یک ورودی مشترک در یک سرور مرکزی.
 
-## 🚀 What It Does
+## 🚀 این ابزار چه می‌کند؟
 
-When users are added with the same port on different XUI panels, this tool merges them into one inbound entry on a central server.
+کاربرانی که در پنل‌های مختلف XUI با یک پورت مشابه اضافه شده‌اند را در یک ورودی ترکیب می‌کند و همه آن‌ها را در یک سرور مرکزی نمایش می‌دهد.
 
-## 📁 File Structure
+## 📁 ساختار پروژه
 
-- `.hrn` files (renamed from `.php` for security)
-- `xapi.sh`: Bash script for backend logic (run this on the new central server)
-- `index.html`: UI interface to submit user data
-- Serves the dashboard on port **8080**
+- فایل‌های `.hrn` (در اصل فایل‌های PHP هستند که برای امنیت تغییر نام داده شده‌اند)
+- فایل `xapi.sh`: اسکریپت bash برای اجرا روی سرور مرکزی
+- فایل `index.html`: رابط کاربری برای ارسال اطلاعات
+- سرور روی پورت **8080** اجرا می‌شود
 
-## 📌 Why `.hrn` Instead of `.php`?
+## 📌 چرا `.hrn` به جای `.php`؟
 
-To avoid PHP code being executed automatically if someone hosts the project publicly. Rename them back to `.php` if you're running this in a safe environment.
+برای جلوگیری از اجرای ناخواسته فایل‌های PHP در سرورهای عمومی. اگر در محیط امن هستید، آن‌ها را به `.php` تغییر دهید.
 
-## 🧠 Centralized Usage
+## 🧠 استفاده مرکزی
 
-This is designed for **centralized management**.
+- `xapi.sh` را روی یک سرور اختصاصی اجرا کنید.
+- فایل `index.html` را روی همان سرور میزبانی کنید.
+- سپس از پورت 8080 استفاده کنید برای دسترسی به پنل مرکزی.
 
-- Run `xapi.sh` on a dedicated server.
-- Host the UI (from `index.html`) on the same server.
-- Server listens on **port 8080**.
-
-### 🛠️ Setup Instructions
+### 🛠️ مراحل نصب
 
 ```bash
 git clone https://github.com/hossein75rn/xui_users_combine.git
@@ -34,33 +32,34 @@ chmod +x xapi.sh
 ./xapi.sh
 ```
 
-Access via: `http://your-server-ip:8080`
+باز کردن در مرورگر:
+`http://your-server-ip:8080`
 
-## 🧪 How to Use
+## 🧪 نحوه استفاده
 
-1. On your XUI panel, create an inbound with the port you want (e.g. 2095).
-2. Note the **Inbound ID**.
-3. Go to the dashboard hosted on the new server (port 8080).
-4. Fill in the form as follows:
+1. در پنل XUI خود، یک inbound با پورت دلخواه (مثلاً 2095) بسازید.
+2. شناسه Inbound را یادداشت کنید.
+3. به داشبورد در سرور مرکزی بروید.
+4. فرم را به این صورت پر کنید:
 
-| Field | Description |
-|-------|-------------|
-| 1️⃣ | Username of the new server's panel |
-| 2️⃣ | Password of the panel |
-| 3️⃣ | Server suffix name (e.g., `server1`, becomes `hossein server1`) – *required for duplicates* |
-| 4️⃣ | Inbound ID |
-| 5️⃣ | Export inbound JSON from the old panel and paste it here |
+| فیلد | توضیح |
+|------|-------|
+| 1️⃣ | نام کاربری پنل جدید |
+| 2️⃣ | رمز عبور پنل |
+| 3️⃣ | پسوند سرور (مثل `server1`، می‌شود `hossein server1`) – *در صورت وجود کاربران تکراری الزامی است* |
+| 4️⃣ | شناسه Inbound |
+| 5️⃣ | JSON خروجی inbound را از پنل قدیمی کپی کرده و اینجا قرار دهید |
 
-5. Click **Submit**. Users will be added to the central panel on the same port.
+5. روی **Submit** کلیک کنید تا کاربران به پنل مرکزی اضافه شوند.
 
-## 🙋‍♂️ Contributions
+## 🙋‍♂️ مشارکت
 
-Pull requests are welcome!
+در صورت داشتن پیشنهاد یا بهبود، خوشحال می‌شویم pull request ارسال کنید.
 
-## 📜 License
+## 📜 مجوز
 
-Licensed under the [MIT License](LICENSE).
+این پروژه تحت مجوز [MIT](LICENSE) ارائه می‌شود.
 
-## 👤 Author
+## 👤 نویسنده
 
-Created by [@hossein75rn](https://github.com/hossein75rn)
+ساخته شده توسط [@hossein75rn](https://github.com/hossein75rn)

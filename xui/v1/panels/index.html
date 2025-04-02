@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>وارد کردن جمعی کاربران</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #1a1a2e;
+        color: white;
+        font-family: "Arial", sans-serif;
+      }
+      .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center h-screen">
+    <form
+      action="http://65.109.192.66/api/v2/insertClient.php"
+      method="POST"
+      enctype="multipart/form-data"
+      class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg fade-in"
+    >
+      <h2 class="text-2xl font-bold text-center mb-4">
+        وارد کردن جمعی کاربران
+      </h2>
+
+      <label class="block">نام کاربری پنل:</label>
+      <input
+        type="text"
+        name="username"
+        class="w-full p-2 mb-2 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <label class="block">پسورد پنل:</label>
+      <input
+        type="password"
+        name="password"
+        class="w-full p-2 mb-2 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <label class="block">پورت پنل:</label>
+      <input
+        placeholder="2082"
+        type="text"
+        name="port"
+        class="w-full p-2 mb-2 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <label class="block">اسم سرور:</label>
+      <input
+        placeholder="h1"
+        type="text"
+        name="serverNick"
+        class="w-full p-2 mb-2 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <label class="block">شناسه ورودی (Inbound ID):</label>
+      <input
+        type="text"
+        name="inbound"
+        class="w-full p-2 mb-2 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <label class="block">جیسون کپی شده:</label>
+      <textarea
+        name="users"
+        class="w-full p-2 mb-4 border border-gray-600 rounded bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
+      ></textarea>
+
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 transition-all p-3 rounded font-bold text-white"
+      >
+        وارد کردن 🚀
+      </button>
+
+      <!-- Optional: this stays hidden unless you want to show PHP output or redirect -->
+      <div
+        id="responseBox"
+        class="mt-4 text-sm p-2 bg-gray-900 rounded border border-gray-700 hidden"
+      >
+        پاسخ از سرور اینجا نشان داده می‌شود
+      </div>
+    </form>
+  </body>
+</html>

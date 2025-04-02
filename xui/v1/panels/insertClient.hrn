@@ -1,0 +1,71 @@
+<?php
+
+require_once "api.php";
+
+header('Content-Type: application/json');
+
+$v2m = new V2rayManager();
+
+// Constants
+$username = $_POST["username"];
+$password = $_POST["password"];
+$port = $_POST['port'];
+$inbound = $_POST["inbound"];
+$serverNick = $_POST['serverNick'];
+$sublink = "";
+
+// Initialize ClientManager
+$clientManager = new ClientManager($port, $sublink);
+
+// Login
+if ($clientManager->login($username, $password)) {
+    $jsonData = $_POST['users'];
+    $data = json_decode($jsonData, true);
+
+    if (isset($data['clientStats']) && is_array($data['clientStats'])) {
+        // Step 1: Decode settings and map email => uuid
+        $settings = json_decode($data['settings'], true);
+        $uuidMap = [];
+        foreach ($settings['clients'] as $client) {
+            $uuidMap[$client['email']] = $client['id'];
+        }
+
+        // Step 2: Insert all clients
+        foreach ($data['clientStats'] as $user) {
+            $email = $user["email"];
+            $fullEmail = $email . $serverNick;
+            $gig = $user['total'];
+            $expiryTime = $user['expiryTime'];
+            $uuid = isset($uuidMap[$email]) ? $uuidMap[$email] : $user['id']; // fallback to id if not found
+
+            $clientManager->addNewClient(
+                $inbound,
+                $uuid,
+                $fullEmail,
+                '',
+                '',
+                '',
+                $gig,
+                $expiryTime,
+                0,
+                'chrome',
+                false
+            );
+        }
+
+        //Step 3: Update traffic
+        foreach ($data['clientStats'] as $user) {
+            $email = $user["email"] . $serverNick;
+            $up = $user['up'];
+            $down = $user['down'];
+
+            if (!$v2m->updateUsedTraffic($email, $up, $down)) {
+                //echo "Failed to update traffic for email: $email\n";
+            }
+        }
+    } else {
+        echo "Invalid or missing 'clientStats' in JSON data.";
+    }
+} else {
+    echo "Failed to login for user: $username";
+}

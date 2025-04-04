@@ -28,7 +28,6 @@
   </head>
   <body class="flex items-center justify-center h-screen">
     <form
-      action="http://65.109.192.66/api/v2/insertClient.php"
       method="POST"
       enctype="multipart/form-data"
       class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg fade-in"
@@ -87,7 +86,6 @@
         وارد کردن 🚀
       </button>
 
-      <!-- Optional: this stays hidden unless you want to show PHP output or redirect -->
       <div
         id="responseBox"
         class="mt-4 text-sm p-2 bg-gray-900 rounded border border-gray-700 hidden"
@@ -95,5 +93,15 @@
         پاسخ از سرور اینجا نشان داده می‌شود
       </div>
     </form>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const form = document.querySelector("form");
+        const hostname = window.location.hostname;
+        const actionUrl = `http://${hostname}/api/v2/insertClient.php`;
+        form.action = actionUrl;
+        console.log("Form action set to:", form.action);
+      });
+    </script>
   </body>
 </html>

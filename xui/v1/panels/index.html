@@ -98,10 +98,35 @@
       window.addEventListener("DOMContentLoaded", () => {
         const form = document.querySelector("form");
         const hostname = window.location.hostname;
-        const actionUrl = `http://${hostname}/api/v2/insertClient.php`;
-        form.action = actionUrl;
+        const port = window.location.port;
+        form.action = `http://${hostname}:${port}/api/v2/insertClient.php`;
         console.log("Form action set to:", form.action);
       });
     </script>
+    <script>
+  const form = document.querySelector("form");
+  const responseBox = document.getElementById("responseBox");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent full page reload
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+      });
+
+      const text = await response.text();
+      responseBox.textContent = text;
+      responseBox.classList.remove("hidden");
+    } catch (err) {
+      responseBox.textContent = "خطا در ارسال اطلاعات به سرور!";
+      responseBox.classList.remove("hidden");
+    }
+  });
+</script>
+
   </body>
 </html>

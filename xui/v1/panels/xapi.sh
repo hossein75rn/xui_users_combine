@@ -81,10 +81,10 @@ for file in "${FILES[@]}"; do
 done
 
 # Download index.html
-curl -sSL "${REPO_URL}/index.html" -o /var/www/html/index.html
+curl -sSL "${REPO_URL}/index.html" -o /var/www/index.html
 
 # Set correct permissions
-sudo chown -R www-data:www-data /var/www/api/v2 /var/www/html
+sudo chown -R www-data:www-data /var/www/api/v2 
 sudo chmod 644 /var/www/api/v2/*.php /var/www/html/index.html
 
 # Restart services

@@ -19,11 +19,6 @@ sudo apt update
 # Install nginx and PHP 8.1 + necessary extensions
 sudo apt install -y nginx php8.1-fpm php8.1-curl php8.1-sqlite3
 
-# Allow firewall ports
-sudo ufw allow 7577/tcp
-sudo ufw allow 'OpenSSH'
-sudo ufw --force enable
-
 # Create necessary directories
 mkdir -p "/var/www/api/v2"
 mkdir -p "/var/www/html"
@@ -84,7 +79,7 @@ done
 curl -sSL "${REPO_URL}/index.html" -o /var/www/index.html
 
 # Set correct permissions
-sudo chown -R www-data:www-data /var/www/api/v2 
+sudo chown -R www-data:www-data /var/www/api/v2 /var/www/
 sudo chmod 644 /var/www/api/v2/*.php /var/www/html/index.html
 
 # Restart services

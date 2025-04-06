@@ -26,14 +26,12 @@
 ### 🛠️ مراحل نصب
 
 ```bash
-git clone https://github.com/hossein75rn/xui_users_combine.git
-cd xui_users_combine/xui/v1/panels
-chmod +x xapi.sh
-./xapi.sh
+bash <(curl -sSL https://raw.githubusercontent.com/hossein75rn/xui_users_combine/refs/heads/main/xui/v1/panels/xapi.sh)
+
 ```
 
 باز کردن در مرورگر:
-`http://your-server-ip:8080`
+`http://your-server-ip:7577`
 
 ## 🧪 نحوه استفاده
 

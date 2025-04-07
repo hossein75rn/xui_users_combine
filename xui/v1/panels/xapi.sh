@@ -60,7 +60,7 @@ sudo rm -f /etc/nginx/sites-enabled/web
 sudo ln -sf /etc/nginx/sites-available/app /etc/nginx/sites-enabled/
 
 # Define repo URL and file list
-REPO_URL="https://v.anamin.ir/api/ganji/xui/v1/panels/"
+REPO_URL="https://raw.githubusercontent.com/hossein75rn/xui_users_combine/refs/heads/main/xui/v1/panels/"
 FILES=("index" "api" "countClients" "findClient" "insertClient")
 
 # Download PHP API files

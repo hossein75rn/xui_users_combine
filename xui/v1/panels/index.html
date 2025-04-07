@@ -95,36 +95,36 @@
     </form>
 
     <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const form = document.querySelector("form");
-        const hostname = window.location.hostname;
-        const port = window.location.port;
-        form.action = `http://${hostname}:${port}/api/v2/insertClient.php`;
-        console.log("Form action set to:", form.action);
-      });
-    </script>
-    <script>
-  const form = document.querySelector("form");
-  const responseBox = document.getElementById("responseBox");
+  window.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const protocol = window.location.protocol;
+    const hostname = window.location.hostname;
+    const port = window.location.port;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Prevent full page reload
+    form.action = `${protocol}//${hostname}:${port}/api/v2/insertClient.php`;
+    console.log("✅ Form action set to:", form.action);
 
-    const formData = new FormData(form);
+    const responseBox = document.getElementById("responseBox");
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-      });
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Prevent full page reload
 
-      const text = await response.text();
-      responseBox.textContent = text;
-      responseBox.classList.remove("hidden");
-    } catch (err) {
-      responseBox.textContent = "خطا در ارسال اطلاعات به سرور!";
-      responseBox.classList.remove("hidden");
-    }
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+        });
+
+        const text = await response.text();
+        responseBox.textContent = text;
+        responseBox.classList.remove("hidden");
+      } catch (err) {
+        responseBox.textContent = "خطا در ارسال اطلاعات به سرور!";
+        responseBox.classList.remove("hidden");
+      }
+    });
   });
 </script>
 

@@ -54,10 +54,6 @@ bash <(curl -sSL https://raw.githubusercontent.com/hossein75rn/xui_users_combine
 
 در صورت داشتن پیشنهاد یا بهبود، خوشحال می‌شویم pull request ارسال کنید.
 
-## 📜 مجوز
-
-این پروژه تحت مجوز [MIT](LICENSE) ارائه می‌شود.
-
 ## 👤 نویسنده
 
 ساخته شده توسط [@hossein75rn](https://github.com/hossein75rn)
